@@ -171,5 +171,29 @@ public class MemberDAO {
 	}
 	
 	// 회원 추가
-	public void insertMember(String id) {}
+	public void insertMember(String id) {
+		try {
+			con = dataSource.getConnection();
+			
+			String id = memberVO.getId();
+			String pwd = memberVO.getPwd();
+			String name = memberVO.getName();
+			String email = memberVO.getEmail();
+			
+			
+			String query = " insert into member values(?,?,?,?,to date('20230427','yyyy-mm-dd'))";
+				   
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, memberVO.getName());
+			pstmt.setString(2, memberVO.getEmail());
+			pstmt.setString(3, memberVO.getId());
+			
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+	}
+	}
 }
