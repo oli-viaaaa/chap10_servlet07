@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.javalab.dao.MemberDAO;
+import com.javalab.dto.MemberVO;
+
 /**
  * Servlet implementation class MemberServlet
  */
@@ -28,7 +31,7 @@ public class ViewServlet extends HttpServlet {
 		// 1. 사용자가 입력한 한글 정보의 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		
-		// 2. 시용자에게 보낼 컨텐츠의 인코딩 처리
+		// 2. 사용자에게 보낼 컨텐츠의 인코딩 처리
 		response.setContentType("text/html; charset=utf-8");
 		
 		// 3. 데이터베이스 핸들링 담당 객체 생성

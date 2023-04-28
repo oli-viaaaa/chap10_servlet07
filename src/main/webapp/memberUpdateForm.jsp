@@ -14,6 +14,7 @@
 <body>
 
 <form name="frmMember" action="${contextPath}/update" method="post">
+<!-- 수정을해도 아이디는 변경할 수 없게 hidden으로 설정한다. -->
 	<input type="hidden" name="id" id="id" value="${requestScope.member.id}">
 	<table>
 		<tr>
@@ -22,7 +23,7 @@
 		<tr>
 			<th>이름</th>
 			<td><input type="text" name="name" value="${requestScope.member.name}"></td>
-<!-- 			value 속성을 이용해서 내용을 담아갈 수 있다. -->
+<!-- 			사용자 이름을 담아가기위해 value 속성을 이용 -->
 		</tr>
 		<tr>
 			<th>이메일</th>

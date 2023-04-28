@@ -1,4 +1,4 @@
-package com.javalab.servlet;
+package com.javalab.dto;
 
 import java.sql.Date;
 

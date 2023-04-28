@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.javalab.dao.MemberDAO;
+import com.javalab.dto.MemberVO;
+
 /**
  * 업데이트할 화면을 보여줄 서블릿
  */

@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.javalab.dao.MemberDAO;
+import com.javalab.dto.MemberVO;
+
 /**
  * 회원 정보를 업데이트하는 서블릿
  */

@@ -1,4 +1,4 @@
-package com.javalab.servlet;
+package com.javalab.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import com.javalab.dto.MemberVO;
 
 
 /**
@@ -170,30 +172,41 @@ public class MemberDAO {
 		}
 	}
 	
-	// 회원 추가
-	public void insertMember(String id) {
-		try {
-			con = dataSource.getConnection();
-			
-			String id = memberVO.getId();
-			String pwd = memberVO.getPwd();
-			String name = memberVO.getName();
-			String email = memberVO.getEmail();
-			
-			
-			String query = " insert into member values(?,?,?,?,to date('20230427','yyyy-mm-dd'))";
-				   
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, memberVO.getName());
-			pstmt.setString(2, memberVO.getEmail());
-			pstmt.setString(3, memberVO.getId());
-			
-			pstmt.executeUpdate();
-			
-			pstmt.close();
-			con.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+	// 회원 등록
+		public void insertMember(MemberVO memberVO) {
+			try {
+				con = dataSource.getConnection();
+				String id = memberVO.getId();
+				String pwd = memberVO.getPwd();
+				String name = memberVO.getName();
+				String email = memberVO.getEmail();
+				
+				// [방법. 1] 데이터 베이스 시간 사용(추천)
+				String query = " insert into member(id, pwd, name, email, joindate)";
+					   query += "values(?,?,?,?,sysdate)";
+				
+			    // [방법. 2] 웹서버의 시간 사용
+			    // String query = " insert into member(id, pwd, name, email, joindate)";
+				//		   query += "values(?,?,?,?,TO_DATE(?,'yyyy-MM-dd HH24:MI:SS'))";
+				// System.out.println("prepareStatememt : " + query);
+					   
+				// 웹 서버의 시간 객체 생성
+				// SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+				// String strDate = dateFormat.format(Calendar.getInstance().getTime());
+					   
+				pstmt = con.prepareStatement(query);
+				
+				pstmt.setString(1, id);
+				pstmt.setString(2, pwd);
+				pstmt.setString(3, name);
+				pstmt.setString(4, email);
+				//pstmt.setDate(5, strDate); // [방법.2]사용시 주석 해제
+				pstmt.executeUpdate();
+				
+				pstmt.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+		}
+		}
 	}
-	}
-}

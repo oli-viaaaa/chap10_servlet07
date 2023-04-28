@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.javalab.dao.MemberDAO;
+import com.javalab.dto.MemberVO;
+
 /**
  * Servlet implementation class MemberServlet
  */
@@ -23,6 +26,7 @@ public class ListServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		MemberDAO dao = new MemberDAO();
+		// ArrayList를 통해서 받아옴.
 		ArrayList<MemberVO> membersList = dao.listMembers();
 		
 		// 조회 결과를 request 영역에 저장
